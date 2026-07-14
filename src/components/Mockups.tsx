@@ -20,9 +20,10 @@ export function HarnessDashboard() {
   </div>
 }
 
-export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' }) {
+export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' | 'design' }) {
   if (type === 'blue') return <div className="project-visual dashboard-mini"><div className="visual-top"><span>AI EVALUATION</span><b>78.4</b></div><div className="mini-bars">{[78,64,86,71,91].map((n,i)=><i key={i} style={{height:`${n}%`}} />)}</div><div className="error-tags"><span>E02 LOGIC</span><span>E05 OVERLOAD</span><span>E06 MATCHING</span></div></div>
   if (type === 'warm') return <div className="project-visual ppt-stack-mini" role="img" aria-label="六个个人 PPT 作品的组合预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{['AI 产品','设计研究','品牌策略','数据洞察'].map((title,i)=><div className={`stack-slide s${i+1}`} key={title}><small>0{i+1}</small><strong>{title}</strong><i /></div>)}<b>6 PROJECTS</b></div>
+  if (type === 'design') return <div className="project-visual design-mosaic-mini" role="img" aria-label="三个个人设计作品的组合预览"><span>DESIGN WORKS / 01—03</span><div className="design-mini-poster"><b>视觉<br />设计</b><i /></div><div className="design-mini-illustration"><i /><b>知识插画</b></div><div className="design-mini-editorial"><small>03</small><b>出版<br />叙事</b></div></div>
   return <div className="project-visual editor-mini"><div className="editor-rail"><i /><i /><i /></div><div className="editor-sheet"><small>CO-CREATION / 04</small><h3>BUILD THE STORY,<br />NOT JUST SLIDES.</h3><div className="editor-columns"><i /><i /><i /></div></div><div className="editor-score"><b>86</b><span>EDITABILITY</span></div></div>
 }
 
@@ -65,5 +66,24 @@ export function PptShowcaseHero({ works }: { works: PptCoverProps[] }) {
   return <div className="ppt-showcase-hero" aria-label="个人 PPT 作品展示预览">
     {works.slice(0, 4).map((work, index) => <div className={`hero-slide hs${index + 1}`} key={work.title}><PptCoverPlaceholder {...work} index={index} /></div>)}
     <span className="hero-slide-count"><b>06</b> SELECTED WORKS</span>
+  </div>
+}
+
+type DesignWorkProps = { index?: number; title: string; englishTitle: string; tone: string; format: string; image?: string }
+
+export function DesignWorkPlaceholder({ index = 0, title, englishTitle, tone, format, image }: DesignWorkProps) {
+  if (image) return <img className={`design-work-image format-${format}`} src={image} alt={`${title}项目展示图`} loading="lazy" />
+  return <div className={`design-work-placeholder tone-${tone} format-${format}`} role="img" aria-label={`${title}项目图片占位，待替换真实作品`}>
+    <span className="design-cover-no">DESIGN / {String(index + 1).padStart(2, '0')}</span>
+    <div className="design-cover-shape"><i /><i /></div>
+    <div className="design-cover-copy"><small>{englishTitle}</small><strong>{title}</strong></div>
+    <span className="design-cover-meta">MIA PORTFOLIO · 2026</span>
+  </div>
+}
+
+export function DesignShowcaseHero({ works }: { works: DesignWorkProps[] }) {
+  return <div className="design-showcase-hero" aria-label="三个个人设计作品预览">
+    {works.map((work, index) => <div className={`design-hero-item dhi-${index + 1}`} key={work.title}><DesignWorkPlaceholder {...work} index={index} /></div>)}
+    <span className="design-hero-count"><b>03</b> SELECTED WORKS</span>
   </div>
 }

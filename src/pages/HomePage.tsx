@@ -31,10 +31,10 @@ export function HomePage() {
 
     <section id="work" className="selected-work section-pad">
       <div className="container">
-        <SectionHead label="SELECTED CASE STUDIES / 精选案例 · 01—03" title={<>连接 AI、产品<br />与表达的设计实践。</>} />
+        <SectionHead label="SELECTED CASE STUDIES / 精选案例 · 01—04" title={<>连接 AI、产品<br />与表达的设计实践。</>} />
         <div className="project-list">{portfolio.projects.map((project)=><Link className={`project-card tone-${project.tone}`} to={`/work/${project.slug}`} key={project.slug}>
           <div className="project-info"><div className="project-index"><span>{project.no}</span><span>{project.type ?? '精选项目 / SELECTED WORK'}</span></div><h3>{project.title}</h3><h4>{project.subtitle}</h4><p>{project.description}</p><Tags items={project.tags} /><span className="view-link">查看完整案例 VIEW CASE →</span></div>
-          <div className="project-art"><div className="mesh" aria-hidden="true" /><ProjectVisual type={project.tone as 'coral'|'blue'|'warm'} /></div>
+          <div className="project-art"><div className="mesh" aria-hidden="true" /><ProjectVisual type={project.tone as 'coral'|'blue'|'warm'|'design'} /></div>
         </Link>)}</div>
       </div>
     </section>

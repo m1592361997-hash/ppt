@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage'
 import { WpsAiPptPage } from './pages/WpsAiPptPage'
 import { HarnessPage } from './pages/HarnessPage'
 import { PersonalPptPage } from './pages/PersonalPptPage'
+import { PersonalDesignPage } from './pages/PersonalDesignPage'
 import { AboutPage } from './pages/AboutPage'
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
     '/work/wps-ai-ppt': WpsAiPptPage,
     '/work/ppt-quality-harness': HarnessPage,
     '/work/personal-ppt': PersonalPptPage,
+    '/work/personal-design': PersonalDesignPage,
     // Keep the previous published path working after the project replacement.
     '/work/puro-coffee': PersonalPptPage,
     '/about': AboutPage,

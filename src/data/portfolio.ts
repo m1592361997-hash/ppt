@@ -52,6 +52,7 @@ export const portfolio = {
     { no: '01', slug: 'wps-ai-ppt', title: 'WPS AI PPT 共创体验', subtitle: 'FROM GENERATION TO CO-CREATION', description: '从“一键生成”到“可理解、可控制、可修改”的 AI PPT 创作体验。', tags: ['USER RESEARCH', 'COMPETITIVE ANALYSIS', 'AI PRODUCT DESIGN', 'PROTOTYPE'], type: '独立概念项目 · INDEPENDENT CONCEPT PROJECT', tone: 'coral' },
     { no: '02', slug: 'ppt-quality-harness', title: 'AI PPT 质量评测系统', subtitle: 'PPT QUALITY HARNESS', description: '建立一套可解释的 AI PPT 生成质量评测体系。', tags: ['AI EVALUATION', 'HARNESS DESIGN', 'DATA ANALYSIS', 'ITERATION'], tone: 'blue' },
     { no: '03', slug: 'personal-ppt', title: '个人 PPT 项目展示', subtitle: 'SELECTED PRESENTATION WORKS', description: '通过六个不同主题的 PPT 作品，展示内容梳理、演示逻辑、版式系统与视觉表达能力。', tags: ['PRESENTATION DESIGN', 'CONTENT STRUCTURE', 'VISUAL SYSTEM', 'STORYTELLING'], type: '个人作品合集 · PERSONAL PROJECTS', tone: 'warm' },
+    { no: '04', slug: 'personal-design', title: '个人设计作品', subtitle: 'SELECTED DESIGN WORKS', description: '通过品牌视觉、知识插画与出版插画三个项目，补充展示内容转译、系列设计和视觉叙事能力。', tags: ['VISUAL DESIGN', 'ILLUSTRATION', 'CONTENT DESIGN', 'EDITORIAL'], type: '个人设计合集 · DESIGN COLLECTION', tone: 'design' },
   ],
   visualWorks: [
     { letter: 'A', title: '个人 PPT 作品集与版式探索', text: '围绕课程汇报、研究答辩与项目提案等场景，建立清晰的内容结构和连续的演示视觉语言。' },
@@ -140,6 +141,23 @@ export const portfolio = {
       { no: '04', title: '数据洞察分析报告', englishTitle: 'DATA INSIGHT', category: '数据报告 / 信息设计', description: '把复杂数据转化为可比较、可阅读并能支持结论的图表与页面结构。', tags: ['数据叙事', '图表设计', '结论提炼'], image: '', tone: 'violet', status: 'PLACEHOLDER · 待替换真实作品' },
       { no: '05', title: '空间设计方案汇报', englishTitle: 'SPATIAL DESIGN', category: '设计方案 / 项目汇报', description: '围绕场地问题、设计策略与空间体验组织方案展示，平衡图像和文字信息。', tags: ['空间叙事', '方案逻辑', '图文编排'], image: '', tone: 'green', status: 'PLACEHOLDER · 待替换真实作品' },
       { no: '06', title: '视觉叙事专题设计', englishTitle: 'VISUAL STORYTELLING', category: '专题策划 / 视觉表达', description: '通过连续页面、图形语言和节奏变化，构建更具情绪与记忆点的演示体验。', tags: ['内容策划', '视觉叙事', '版式系统'], image: '', tone: 'pink', status: 'PLACEHOLDER · 待替换真实作品' },
+    ],
+  },
+  personalDesign: {
+    title: '个人设计作品',
+    subtitle: ['三个项目，三种视觉转译', 'SELECTED DESIGN WORKS'],
+    summary: '这一部分收录三个不同类型的视觉设计项目，呈现我如何根据品牌传播、知识普及和出版表达的目标，把内容转化为具有识别度、可理解且能够持续延展的视觉系统。',
+    meta: [['项目类型', '个人设计作品合集'], ['作品数量', '3 个项目'], ['能力方向', '视觉设计、插画、内容转译'], ['图片状态', '待替换真实项目图']],
+    strengths: [
+      ['内容理解', '先理解传播目标、受众和信息重点，再选择适合的视觉语言。'],
+      ['系列设计', '通过统一规则保持项目连续性，同时为不同内容建立清楚差异。'],
+      ['视觉叙事', '使用构图、角色、场景与节奏，把复杂信息转化为容易理解的画面。'],
+    ],
+    // TODO: Replace image paths and refine descriptions after the real project images are provided.
+    works: [
+      { no: '01', title: '品牌与电商视觉设计', englishTitle: 'BRAND & E-COMMERCE VISUAL', category: '品牌视觉 / 平台物料', description: '围绕产品传播完成系列海报及平台应用物料，在统一视觉基调下，通过构图、字体层级与图形关系建立内容区分。', tags: ['品牌视觉', '海报设计', '系列延展'], image: '', tone: 'red', format: 'landscape', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '02', title: '中小学生安全手册插画', englishTitle: 'SAFETY HANDBOOK ILLUSTRATION', category: '知识插画 / 儿童读物', description: '将交通、校园、消防和日常防护知识转化为儿童容易理解的角色、场景与行为对比。', tags: ['知识转译', '角色设计', '场景插画'], image: '', tone: 'yellow', format: 'portrait', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '03', title: '《漫画版内务条令》插画', englishTitle: 'EDITORIAL COMIC ILLUSTRATION', category: '出版插画 / 内容设计', description: '参与政务出版合作，将文字条令转译为漫画场景。涉及内部资料的部分仅展示公开或脱敏后的设计过程。', tags: ['出版插画', '漫画叙事', '内容设计'], image: '', tone: 'blue', format: 'landscape', status: 'PLACEHOLDER · 待替换真实作品' },
     ],
   },
 }

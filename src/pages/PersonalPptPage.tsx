@@ -1,5 +1,4 @@
-import { Link } from '../router'
-import { CaseHero, CaseSection, MetaGrid, PlaceholderBadge, Tags } from '../components/UI'
+import { CaseHero, CaseSection, MetaGrid, NextProject, PlaceholderBadge, Tags } from '../components/UI'
 import { PptCoverPlaceholder, PptShowcaseHero } from '../components/Mockups'
 import { portfolio } from '../data/portfolio'
 
@@ -38,6 +37,6 @@ export function PersonalPptPage() {
       <div className="ppt-replace-note"><PlaceholderBadge>PLACEHOLDER · 待替换真实作品</PlaceholderBadge><p>建议每个项目优先提供一张 16:9 封面图；如需进一步展示完整页面，可在下一轮扩展为项目图库或灯箱浏览。</p></div>
     </CaseSection>
 
-    <Link className="next-project" to="/#work"><span>返回首页 / BACK</span><strong>精选项目</strong><i>→</i></Link>
+    <NextProject label="个人设计作品" to="/work/personal-design" />
   </div>
 }
