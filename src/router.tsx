@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type AnchorHTMLAttributes, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type AnchorHTMLAttributes, type MouseEvent, type ReactNode } from 'react'
 
 type Location = { pathname: string }
 const RouterContext = createContext<Location>({ pathname: '/' })
@@ -21,5 +21,17 @@ export function RouterProvider({ children }: { children: ReactNode }) {
 export function useLocation() { return useContext(RouterContext) }
 
 export function Link({ to, children, onClick, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }) {
-  return <a {...rest} href={`#${to}`} onClick={onClick}>{children}</a>
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event)
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || rest.target === '_blank') return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const transitionDocument = document as Document & { startViewTransition?: (callback: () => void) => unknown }
+    if (!transitionDocument.startViewTransition || reducedMotion || window.location.hash === `#${to}`) return
+
+    event.preventDefault()
+    transitionDocument.startViewTransition.call(document, () => { window.location.hash = to })
+  }
+
+  return <a {...rest} href={`#${to}`} onClick={handleClick}>{children}</a>
 }

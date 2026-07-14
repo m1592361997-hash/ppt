@@ -4,26 +4,39 @@ import { portfolio } from '../data/portfolio'
 
 function SmartLink({ to, children, onClick, className }: { to: string; children: ReactNode; onClick?: () => void; className?: string }) {
   if (to.startsWith('/#')) {
-    const id = to.slice(2)
-    return <Link className={className} to={to} onClick={() => { onClick?.(); requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })) }}>{children}</Link>
+    return <Link className={className} to={to} onClick={onClick}>{children}</Link>
   }
   return <Link className={className} to={to} onClick={onClick}>{children}</Link>
 }
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const [progress, setProgress] = useState(0)
   const [open, setOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 24)
+    let frame = 0
+    const update = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight
+        setScrolled(window.scrollY > 24)
+        setProgress(scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0)
+      })
+    }
     update(); window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
+    window.addEventListener('resize', update, { passive: true })
+    return () => { cancelAnimationFrame(frame); window.removeEventListener('scroll', update); window.removeEventListener('resize', update) }
   }, [])
   useEffect(() => {
     setOpen(false)
+    const anchor = location.pathname.split('#')[1]
     window.scrollTo({ top: 0, behavior: 'instant' })
-    requestAnimationFrame(() => document.getElementById('main')?.focus({ preventScroll: true }))
+    requestAnimationFrame(() => {
+      document.getElementById('main')?.focus({ preventScroll: true })
+      if (anchor) document.getElementById(anchor)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+    })
   }, [location.pathname])
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [open])
   useEffect(() => {
@@ -60,6 +73,7 @@ export function Header() {
             : <SmartLink className={activeClass(item.to)} key={item.label} to={item.to} onClick={() => setOpen(false)}><small>0{index + 1}</small>{item.label}</SmartLink>)}
         </nav>
       </div>
+      <div className="scroll-progress" aria-hidden="true"><i style={{ transform: `scaleX(${progress})` }} /></div>
     </header>
   )
 }

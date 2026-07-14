@@ -1,6 +1,6 @@
 import { Link } from '../router'
 import { Footer } from '../components/Layout'
-import { ProjectVisual, WorkbenchMockup } from '../components/Mockups'
+import { ProjectVisual } from '../components/Mockups'
 import { SectionHead, Tags } from '../components/UI'
 import { portfolio } from '../data/portfolio'
 
@@ -9,16 +9,29 @@ export function HomePage() {
     <section className="hero">
       <div className="hero-mesh mesh" aria-hidden="true" />
       <div className="noise" aria-hidden="true" />
-      <div className="container hero-grid">
-        <div className="hero-copy">
+      <div className="container hero-intro-shell">
+        <div className="hero-topline">
           <div className="dual-eyebrow"><span>{portfolio.hero.eyebrow[0]}</span><span>{portfolio.hero.eyebrow[1]}</span></div>
-          <h1>{portfolio.hero.title.map((line,i)=><span className={i===1?'accent-line':''} key={line}>{line}</span>)}</h1>
-          <p className="hero-claim">AI PRODUCT & PRESENTATION DESIGN<br />人工智能产品与演示设计</p>
-          <p className="hero-intro">{portfolio.profile.intro}</p>
-          <Tags items={portfolio.hero.skills} />
-          <div className="button-row"><a className="button button-dark" href="#work">查看精选项目 WORK <span>↓</span></a><Link className="button button-text" to="/about">关于我 ABOUT <span>↗</span></Link></div>
+          <span className="hero-availability">{portfolio.hero.availability}</span>
         </div>
-        <div className="hero-visual"><div className="visual-caption"><span>AI PPT WORKSPACE</span><span>CONCEPT / 2026</span></div><WorkbenchMockup /></div>
+        <h1 className="hero-identity" aria-label={portfolio.hero.identity.join('')}>
+          {portfolio.hero.identity.map((line, index) => <span className={`hero-identity-line line-${index + 1}`} aria-hidden="true" key={line}><i>{line}</i></span>)}
+        </h1>
+        <div className="hero-bottomline">
+          <div className="hero-statement"><span>POSITION / 定位</span><strong>{portfolio.profile.statement}</strong></div>
+          <p>{portfolio.profile.intro}</p>
+          <a className="hero-scroll" href="#work"><span>浏览精选项目</span><small>SELECTED WORK</small><i aria-hidden="true">↓</i></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" className="selected-work section-pad">
+      <div className="container">
+        <SectionHead label="SELECTED CASE STUDIES / 精选案例 · 01—04" title={<>精选项目，<br />从问题到表达。</>} text={portfolio.hero.workIntro} />
+        <div className="project-list">{portfolio.projects.map((project)=><Link className={`project-card tone-${project.tone}`} to={`/work/${project.slug}`} key={project.slug}>
+          <div className="project-info"><div className="project-index"><span>{project.no}</span><span>{project.type ?? '精选项目 / SELECTED WORK'}</span></div><h3>{project.title}</h3><h4>{project.subtitle}</h4><p>{project.description}</p><Tags items={project.tags} /><span className="view-link">查看完整案例 VIEW CASE →</span></div>
+          <div className="project-art"><div className="mesh" aria-hidden="true" /><ProjectVisual type={project.tone as 'coral'|'blue'|'warm'|'design'} /><span className="project-hover-cta" aria-hidden="true"><b>查看</b><small>VIEW PROJECT</small><i>↗</i></span></div>
+        </Link>)}</div>
       </div>
     </section>
 
@@ -26,16 +39,6 @@ export function HomePage() {
       <div className="container">
         <SectionHead label="POSITIONING / 个人定位 · 01" title={<>从视觉设计出发，<br />走向 AI 产品思考。</>} text="我的优势不只是把页面做得好看，而是能够从内容理解、信息结构、视觉表达和用户操作路径出发，思考 AI 如何真正帮助用户完成一份好 PPT。" />
         <div className="capability-grid">{portfolio.capabilities.map((item,i)=><article className={`capability-card c${i+1}`} key={item.no}><span>{item.no}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
-      </div>
-    </section>
-
-    <section id="work" className="selected-work section-pad">
-      <div className="container">
-        <SectionHead label="SELECTED CASE STUDIES / 精选案例 · 01—04" title={<>连接 AI、产品<br />与表达的设计实践。</>} />
-        <div className="project-list">{portfolio.projects.map((project)=><Link className={`project-card tone-${project.tone}`} to={`/work/${project.slug}`} key={project.slug}>
-          <div className="project-info"><div className="project-index"><span>{project.no}</span><span>{project.type ?? '精选项目 / SELECTED WORK'}</span></div><h3>{project.title}</h3><h4>{project.subtitle}</h4><p>{project.description}</p><Tags items={project.tags} /><span className="view-link">查看完整案例 VIEW CASE →</span></div>
-          <div className="project-art"><div className="mesh" aria-hidden="true" /><ProjectVisual type={project.tone as 'coral'|'blue'|'warm'|'design'} /></div>
-        </Link>)}</div>
       </div>
     </section>
 

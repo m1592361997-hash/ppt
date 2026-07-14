@@ -5,6 +5,7 @@ import { RouterProvider } from './router'
 import './styles/tokens.css'
 import './styles/global.css'
 import './styles/refinement.css'
+import './styles/interaction-refresh.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

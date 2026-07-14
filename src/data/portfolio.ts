@@ -28,7 +28,10 @@ export const portfolio = {
   ],
   hero: {
     eyebrow: ['PORTFOLIO 2026', 'AI PRODUCT / PRESENTATION / VISUAL DESIGN'],
+    availability: '设计硕士在读 · 武汉 / WUHAN',
+    identity: ['你好，我是苗玉婷，', '一名从视觉设计走向', 'AI 产品与演示体验的', '设计研究者。'],
     title: ['让 AI 更懂表达，', '让演示创作', '更简单。'],
+    workIntro: '四个项目分别呈现我对 AI 演示产品、竞品研究、PPT 视觉系统与内容设计的理解。',
     skills: ['USER RESEARCH', 'PRODUCT THINKING', 'AI EVALUATION', 'INTERACTION DESIGN', 'PRESENTATION DESIGN'],
   },
   capabilities: [
