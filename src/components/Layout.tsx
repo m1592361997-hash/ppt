@@ -102,7 +102,6 @@ export function Layout({ children }: { children: ReactNode }) {
       '.process-line article',
       '.visual-list article',
       '.about-grid > *',
-      '.case-visual',
       '.meta-grid > div',
       '.case-content > h2',
       '.case-content > .case-lead',
