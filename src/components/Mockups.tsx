@@ -27,6 +27,18 @@ export function VisualDirectionWorkbench() {
   </div>
 }
 
+export function PracticeWorkflowMockup() {
+  return <div className="practice-workflow-mock" role="img" aria-label="从 Word 文字稿、AI 生成初稿到人工视觉优化的课堂汇报流程示意图">
+    <header><div className="traffic"><i /><i /><i /></div><span>CLASSROOM PRESENTATION / PERSONAL PRACTICE</span><b>WPS AI PPT</b></header>
+    <div className="practice-stage stage-word"><small>01 / WORD SCRIPT</small><strong>完整文字稿</strong><div className="word-lines"><i /><i /><i /><i /><i /></div><span>内容与观点已整理</span></div>
+    <i className="practice-arrow">→</i>
+    <div className="practice-stage stage-ai"><small>02 / AI DRAFT</small><strong>快速生成初稿</strong><div className="draft-layout"><i /><i /><i /></div><span>结构完整 · 模板统一</span></div>
+    <i className="practice-arrow">→</i>
+    <div className="practice-stage stage-mine"><small>03 / HUMAN JUDGMENT</small><strong>视觉共创</strong><div className="mine-layout"><i /><i /><i /></div><span>提炼 · 换图 · 重组 · 校准</span></div>
+    <footer><span>FAST GENERATION</span><i /><b>VISUAL CO-CREATION</b></footer>
+  </div>
+}
+
 export function HarnessDashboard() {
   return <div className="dashboard-mock" role="img" aria-label="AI PPT 质量评测仪表盘示意图">
     <header><span>HARNESS / SAMPLE 024</span><b>QUALITY REPORT</b><i>EXPORT ↗</i></header>
@@ -39,7 +51,7 @@ export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' | 'des
   if (type === 'blue') return <div className="project-visual dashboard-mini"><div className="visual-top"><span>AI EVALUATION</span><b>78.4</b></div><div className="mini-bars">{[78,64,86,71,91].map((n,i)=><i key={i} style={{height:`${n}%`}} />)}</div><div className="error-tags"><span>E02 LOGIC</span><span>E05 OVERLOAD</span><span>E06 MATCHING</span></div></div>
   if (type === 'warm') return <div className="project-visual ppt-stack-mini" role="img" aria-label="六个个人 PPT 作品的组合预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{['AI 产品','设计研究','品牌策略','数据洞察'].map((title,i)=><div className={`stack-slide s${i+1}`} key={title}><small>0{i+1}</small><strong>{title}</strong><i /></div>)}<b>6 PROJECTS</b></div>
   if (type === 'design') return <div className="project-visual design-mosaic-mini" role="img" aria-label="三个个人设计作品的组合预览"><span>DESIGN WORKS / 01—03</span><div className="design-mini-poster"><b>视觉<br />设计</b><i /></div><div className="design-mini-illustration"><i /><b>知识插画</b></div><div className="design-mini-editorial"><small>03</small><b>出版<br />叙事</b></div></div>
-  return <div className="project-visual visual-language-mini" role="img" aria-label="AI 根据课堂汇报内容提出三种视觉方向的界面示意"><div className="vl-source"><span>WORD / INPUT</span><i /><i /><i /><b>案例分析型汇报</b></div><div className="vl-directions"><small>VISUAL DIRECTIONS / 03</small>{['理性学术','编辑叙事','实验视觉'].map((title,index)=><div className={index===1?'active':''} key={title}><span>{String.fromCharCode(65+index)}</span><b>{title}</b><i /></div>)}</div><div className="vl-rule"><span>SELECTED</span><strong>编辑式叙事</strong><small>图片优先 · 对比网格<br />观点与证据同屏</small></div></div>
+  return <div className="project-visual practice-card-mini" role="img" aria-label="从 Word 文字稿到 AI 初稿再到个人视觉表达的项目流程示意"><div><small>01 / WORD</small><strong>文字稿</strong><i /><i /><i /></div><span>→</span><div><small>02 / AI DRAFT</small><strong>生成初稿</strong><div className="mini-draft"><i /><i /></div></div><span>→</span><div className="made-mine"><small>03 / MADE MINE</small><strong>视觉共创</strong><div className="mini-final"><i /><i /></div></div><footer>FAST GENERATION <b>→</b> VISUAL CO-CREATION</footer></div>
 }
 
 export function NeedInputMock() {
