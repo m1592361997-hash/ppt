@@ -1,4 +1,6 @@
 // Central content source. Search TODO / PLACEHOLDER before publishing.
+const pptSlidePaths = (folder: string, count: number) => Array.from({ length: count }, (_, index) => `./images/ppt-works/${folder}/slide-${String(index + 1).padStart(2, '0')}.webp`)
+
 export const portfolio = {
   profile: {
     name: 'MIA / 苗玉婷',
@@ -51,7 +53,7 @@ export const portfolio = {
   projects: [
     { no: '01', slug: 'wps-ai-ppt', title: 'WPS AI PPT｜从快速生成到视觉共创', subtitle: 'FROM FAST GENERATION TO VISUAL CO-CREATION', description: '从 Word 文字稿、AI 生成初稿，到具有个人判断的课堂表达：记录一次真实汇报实践，并重新思考 AI 如何参与内容与视觉共创。', tags: ['PERSONAL PRACTICE', 'AI PRODUCT THINKING', 'PRESENTATION DESIGN', 'VISUAL COMMUNICATION'], type: '基于个人实践的独立概念探索 · PERSONAL PRACTICE-BASED EXPLORATION', tone: 'coral' },
     { no: '02', slug: 'ai-ppt-competitive-analysis', title: 'WPS AI PPT 竞品分析', subtitle: 'AI PPT PRODUCT BENCHMARK', description: '使用同一份 Word 材料和相同的生成要求，测试 WPS、Gamma、Canva、Copilot 等六款 AI PPT 产品，比较首稿质量、修改成本和 PPTX 交付效果，并整理 WPS 目前的优势、短板和优化顺序。', tags: ['COMPETITOR ANALYSIS', 'PRODUCT TESTING', 'DATA ANALYSIS', 'PRODUCT SUGGESTION'], type: '个人独立研究 · 基于公开版本测试', tone: 'blue' },
-    { no: '03', slug: 'personal-ppt', title: '个人 PPT 项目展示', subtitle: 'SELECTED PRESENTATION WORKS', description: '通过六个不同主题的 PPT 作品，展示内容梳理、演示逻辑、版式系统与视觉表达能力。', tags: ['PRESENTATION DESIGN', 'CONTENT STRUCTURE', 'VISUAL SYSTEM', 'STORYTELLING'], type: '个人作品合集 · PERSONAL PROJECTS', tone: 'warm' },
+    { no: '03', slug: 'personal-ppt', title: '个人 PPT 项目展示', subtitle: 'SELECTED PRESENTATION WORKS', description: '集中展示 6 套真实 PPT 的 118 张完整页面，涵盖课程研究、项目策划、英文演讲、个人作品集与空间设计汇报。', tags: ['PRESENTATION DESIGN', 'CONTENT STRUCTURE', 'VISUAL SYSTEM', 'STORYTELLING'], type: '个人作品合集 · 6 DECKS / 118 PAGES', tone: 'warm' },
     { no: '04', slug: 'personal-design', title: '个人设计作品', subtitle: 'SELECTED DESIGN WORKS', description: '通过品牌视觉、知识插画与出版插画三个项目，补充展示内容转译、系列设计和视觉叙事能力。', tags: ['VISUAL DESIGN', 'ILLUSTRATION', 'CONTENT DESIGN', 'EDITORIAL'], type: '个人设计合集 · DESIGN COLLECTION', tone: 'design' },
   ],
   visualWorks: [
@@ -282,23 +284,22 @@ export const portfolio = {
   },
   personalPpt: {
     title: '个人 PPT 项目展示',
-    subtitle: ['六个作品，六种表达方式', 'SELECTED PRESENTATION WORKS'],
-    summary: '这里将集中展示六个不同主题与使用场景的 PPT 作品，重点呈现我如何组织内容、建立演示逻辑，并通过版式、字体、色彩和图形系统完成视觉转译。',
-    meta: [['项目类型', '个人 PPT 作品合集'], ['作品数量', '6 个项目'], ['我的角色', '内容梳理、演示设计、视觉设计'], ['展示内容', '封面、核心页面与设计说明']],
+    subtitle: ['六套作品，完整页面展示', 'SELECTED PRESENTATION WORKS'],
+    summary: '收录六套不同主题与使用场景的真实 PPT，共 118 张页面。通过完整页面序列，展示我在课程研究、项目策划、英文表达、个人作品集与空间设计汇报中的内容组织、版式系统和视觉表达。',
+    meta: [['项目类型', '个人 PPT 作品合集'], ['作品数量', '6 套'], ['页面总数', '118 张'], ['内容方向', '研究、策划、演讲、作品集、空间设计'], ['展示方式', '完整页面序列']],
     principles: [
       ['内容结构', '先明确汇报目的、受众和核心结论，再规划章节与页面节奏。'],
       ['信息层级', '通过标题比例、网格、留白和对比，让重点在短时间内被理解。'],
       ['视觉系统', '根据项目主题建立一致的字体、色彩、图形和页面组件规则。'],
       ['场景适配', '针对课程汇报、答辩、提案等场景调整信息密度与表达方式。'],
     ],
-    // TODO: Replace titles, descriptions and image paths with the six real PPT projects.
     works: [
-      { no: '01', title: 'AI 产品分析与概念提案', englishTitle: 'AI PRODUCT CONCEPT', category: '产品分析 / 概念提案', description: '以产品问题、用户洞察和方案逻辑为主线，展示从分析到概念设计的完整叙事。', tags: ['产品逻辑', '用户洞察', '方案表达'], image: '', tone: 'coral', status: 'PLACEHOLDER · 待替换真实作品' },
-      { no: '02', title: '设计研究课程汇报', englishTitle: 'DESIGN RESEARCH', category: '课程汇报 / 研究表达', description: '将研究背景、方法、发现和结论组织为清晰的学术汇报结构。', tags: ['研究框架', '信息可视化', '学术表达'], image: '', tone: 'blue', status: 'PLACEHOLDER · 待替换真实作品' },
-      { no: '03', title: '品牌策略与视觉提案', englishTitle: 'BRAND STRATEGY', category: '品牌提案 / 视觉系统', description: '通过品牌定位、视觉概念和应用示意建立具有说服力的提案节奏。', tags: ['品牌策略', '视觉系统', '提案设计'], image: '', tone: 'orange', status: 'PLACEHOLDER · 待替换真实作品' },
-      { no: '04', title: '数据洞察分析报告', englishTitle: 'DATA INSIGHT', category: '数据报告 / 信息设计', description: '把复杂数据转化为可比较、可阅读并能支持结论的图表与页面结构。', tags: ['数据叙事', '图表设计', '结论提炼'], image: '', tone: 'violet', status: 'PLACEHOLDER · 待替换真实作品' },
-      { no: '05', title: '空间设计方案汇报', englishTitle: 'SPATIAL DESIGN', category: '设计方案 / 项目汇报', description: '围绕场地问题、设计策略与空间体验组织方案展示，平衡图像和文字信息。', tags: ['空间叙事', '方案逻辑', '图文编排'], image: '', tone: 'green', status: 'PLACEHOLDER · 待替换真实作品' },
-      { no: '06', title: '视觉叙事专题设计', englishTitle: 'VISUAL STORYTELLING', category: '专题策划 / 视觉表达', description: '通过连续页面、图形语言和节奏变化，构建更具情绪与记忆点的演示体验。', tags: ['内容策划', '视觉叙事', '版式系统'], image: '', tone: 'pink', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '01', title: '哥本哈根焚烧发电厂景观生态修复研究', englishTitle: 'COPENHILL LANDSCAPE ECOLOGICAL RESTORATION', category: '课程研究 / 案例分析', description: '围绕 CopenHill 的问题诊断、修复逻辑、设计方法与评价反思，建立从案例背景到生态策略的完整研究叙事。', tags: ['案例研究', '信息结构', '景观生态'], image: './images/ppt-works/01-copenhill/slide-01.webp', tone: 'violet', slides: pptSlidePaths('01-copenhill', 18) },
+      { no: '02', title: '艺芯向党·红色传承', englishTitle: 'ART-BASED PARTY EDUCATION PROJECT', category: '艺术党课 / 项目策划', description: '以项目立项、实施计划、预期成果、创新点和保障机制为主线，组织一套红色艺术育人项目汇报。', tags: ['项目策划', '团队汇报', '主题视觉'], image: './images/ppt-works/02-art-party/slide-01.webp', tone: 'red', slides: pptSlidePaths('02-art-party', 25) },
+      { no: '03', title: '鸡排主理人英文演讲', englishTitle: 'CHICKEN CUTLET CURATOR', category: '英文演讲 / 人物叙事', description: '通过人物故事、身份解析与职业价值展开八页英文演讲，在短篇幅中保持轻松、连续且易于现场讲述的节奏。', tags: ['英文表达', '人物故事', '轻量叙事'], image: './images/ppt-works/03-chicken/slide-01.webp', tone: 'yellow', slides: pptSlidePaths('03-chicken', 8) },
+      { no: '04', title: '艺术党课中期汇报', englishTitle: 'ART-BASED PARTY COURSE MIDTERM REPORT', category: '中期汇报 / 项目进展', description: '围绕立项背景、中期定位、工作进展、成果展示与后续计划，将阶段性材料整理为清晰、可复盘的项目汇报。', tags: ['进度汇报', '成果整理', '信息图表'], image: './images/ppt-works/04-midterm/slide-01.webp', tone: 'red', slides: pptSlidePaths('04-midterm', 10) },
+      { no: '05', title: '个人平面设计作品集', englishTitle: 'GRAPHIC DESIGN PORTFOLIO', category: '个人作品集 / 平面设计', description: '用 42 页串联品牌设计、插画、出版物、海报与平台物料，展示不同项目之间的视觉差异与统一的作品集叙事。', tags: ['品牌设计', '插画设计', '作品集编排'], image: './images/ppt-works/05-design-portfolio/slide-01.webp', tone: 'coral', slides: pptSlidePaths('05-design-portfolio', 42) },
+      { no: '06', title: 'MOMO 商业烘焙空间设计', englishTitle: 'MOMO BAKERY SPACE DESIGN', category: '空间设计 / 方案汇报', description: '从场地分析、空间定位、平面推演到材质、软装与效果展示，完整呈现商业烘焙空间的设计方案。', tags: ['空间设计', '方案逻辑', '图文编排'], image: './images/ppt-works/06-momo/slide-01.webp', tone: 'warm', slides: pptSlidePaths('06-momo', 15) },
     ],
   },
   personalDesign: {

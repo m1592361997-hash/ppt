@@ -59,7 +59,11 @@ export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' | 'des
     const times = portfolio.competitiveAnalysis.efficiency.map(([name, , usable]) => [name.toUpperCase(), usable.replace(' 分钟', '')])
     return <div className="project-visual competition-mini benchmark-mini" role="img" aria-label="WPS AI PPT 竞品分析数据概览"><div className="visual-top"><span>PRODUCT BENCHMARK</span><b>{stats[3][0]}</b></div><div className="benchmark-mini-stats">{stats.map(([value,label])=><div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div><div className="benchmark-mini-chart">{times.map(([name,time])=><div className={name==='WPS'?'active':''} key={name}><span>{name}</span><i><b style={{width:`${Number(time) * 3.2}%`}} /></i><small>{time}m</small></div>)}</div><footer>调整到可用 / TIME TO USABLE</footer></div>
   }
-  if (type === 'warm') return <div className="project-visual ppt-stack-mini" role="img" aria-label="六个个人 PPT 作品的组合预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{['AI 产品','设计研究','品牌策略','数据洞察'].map((title,i)=><div className={`stack-slide s${i+1}`} key={title}><small>0{i+1}</small><strong>{title}</strong><i /></div>)}<b>6 PROJECTS</b></div>
+  if (type === 'warm') {
+    const works = portfolio.personalPpt.works
+    const order = [4, 0, 5, 2, 1, 3]
+    return <div className="project-visual ppt-stack-mini real-ppt-stack-mini" role="img" aria-label="六套个人 PPT 作品封面拼贴预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{order.map((workIndex, index) => <img className={`real-stack-slide rss-${index + 1}`} src={works[workIndex].image} alt="" aria-hidden="true" loading="lazy" key={works[workIndex].no} />)}<b>6 PROJECTS · 118 PAGES</b></div>
+  }
   if (type === 'design') return <div className="project-visual design-mosaic-mini" role="img" aria-label="三个个人设计作品的组合预览"><span>DESIGN WORKS / 01—03</span><div className="design-mini-poster"><b>视觉<br />设计</b><i /></div><div className="design-mini-illustration"><i /><b>知识插画</b></div><div className="design-mini-editorial"><small>03</small><b>出版<br />叙事</b></div></div>
   return <div className="project-visual practice-card-mini" role="img" aria-label="从 Word 文字稿到 AI 初稿再到个人视觉表达的项目流程示意"><div><small>01 / WORD</small><strong>文字稿</strong><i /><i /><i /></div><span>→</span><div><small>02 / AI DRAFT</small><strong>生成初稿</strong><div className="mini-draft"><i /><i /></div></div><span>→</span><div className="made-mine"><small>03 / MADE MINE</small><strong>视觉共创</strong><div className="mini-final"><i /><i /></div></div><footer>FAST GENERATION <b>→</b> VISUAL CO-CREATION</footer></div>
 }
@@ -89,20 +93,12 @@ export function ResultMock() {
 
 type PptCoverProps = { index?: number; title: string; englishTitle: string; tone: string; image?: string }
 
-export function PptCoverPlaceholder({ index = 0, title, englishTitle, tone, image }: PptCoverProps) {
-  if (image) return <img className="ppt-cover-image" src={image} alt={`${title} PPT 作品封面`} loading="lazy" />
-  return <div className={`ppt-cover-placeholder tone-${tone}`} role="img" aria-label={`${title} PPT 封面占位，待替换真实作品图片`}>
-    <span className="ppt-cover-no">PPT / {String(index + 1).padStart(2, '0')}</span>
-    <div className="ppt-cover-lines"><i /><i /><i /></div>
-    <div className="ppt-cover-copy"><small>{englishTitle}</small><strong>{title}</strong></div>
-    <span className="ppt-cover-year">MIA · 2026</span>
-  </div>
-}
-
 export function PptShowcaseHero({ works }: { works: PptCoverProps[] }) {
-  return <div className="ppt-showcase-hero" aria-label="个人 PPT 作品展示预览">
-    {works.slice(0, 4).map((work, index) => <div className={`hero-slide hs${index + 1}`} key={work.title}><PptCoverPlaceholder {...work} index={index} /></div>)}
-    <span className="hero-slide-count"><b>06</b> SELECTED WORKS</span>
+  const order = [4, 0, 5, 2, 1, 3]
+  return <div className="ppt-showcase-hero real-ppt-showcase-hero" role="img" aria-label="六套个人 PPT 作品封面拼贴">
+    <span className="real-ppt-hero-label">PRESENTATION WORKS / 01—06</span>
+    {order.map((workIndex, index) => <div className={`hero-slide real-hero-slide rhs-${index + 1}`} key={works[workIndex].title}><img src={works[workIndex].image} alt="" aria-hidden="true" loading={index === 0 ? 'eager' : 'lazy'} /></div>)}
+    <span className="hero-slide-count"><b>118</b> PAGES / 6 WORKS</span>
   </div>
 }
 
