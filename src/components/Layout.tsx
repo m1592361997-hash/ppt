@@ -2,12 +2,12 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { Link, useLocation } from '../router'
 import { portfolio } from '../data/portfolio'
 
-function SmartLink({ to, children, onClick }: { to: string; children: ReactNode; onClick?: () => void }) {
+function SmartLink({ to, children, onClick, className }: { to: string; children: ReactNode; onClick?: () => void; className?: string }) {
   if (to.startsWith('/#')) {
     const id = to.slice(2)
-    return <Link to={to} onClick={() => { onClick?.(); requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })) }}>{children}</Link>
+    return <Link className={className} to={to} onClick={() => { onClick?.(); requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })) }}>{children}</Link>
   }
-  return <Link to={to} onClick={onClick}>{children}</Link>
+  return <Link className={className} to={to} onClick={onClick}>{children}</Link>
 }
 
 export function Header() {
@@ -20,8 +20,24 @@ export function Header() {
     update(); window.addEventListener('scroll', update, { passive: true })
     return () => window.removeEventListener('scroll', update)
   }, [])
-  useEffect(() => { setOpen(false); window.scrollTo({ top: 0, behavior: 'instant' }); }, [location.pathname])
+  useEffect(() => {
+    setOpen(false)
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    requestAnimationFrame(() => document.getElementById('main')?.focus({ preventScroll: true }))
+  }, [location.pathname])
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [open])
+  useEffect(() => {
+    if (!open) return
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [open])
+
+  const activeClass = (to: string) => {
+    if (to === '/#work' && location.pathname.startsWith('/work/')) return 'is-active'
+    if (to === '/about' && location.pathname === '/about') return 'is-active'
+    return undefined
+  }
 
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
@@ -31,7 +47,7 @@ export function Header() {
         <nav className="desktop-nav" aria-label="主导航">
           {portfolio.navigation.map((item) => item.external
             ? <a key={item.label} href={item.to}>{item.label}</a>
-            : <SmartLink key={item.label} to={item.to}>{item.label}</SmartLink>)}
+            : <SmartLink className={activeClass(item.to)} key={item.label} to={item.to}>{item.label}</SmartLink>)}
         </nav>
         <button className={`menu-button ${open ? 'is-open' : ''}`} aria-label={open ? '关闭菜单' : '打开菜单'} aria-expanded={open} onClick={() => setOpen(!open)}>
           <span /><span />
@@ -41,7 +57,7 @@ export function Header() {
         <nav aria-label="移动端导航">
           {portfolio.navigation.map((item, index) => item.external
             ? <a key={item.label} href={item.to} onClick={() => setOpen(false)}><small>0{index + 1}</small>{item.label}</a>
-            : <SmartLink key={item.label} to={item.to} onClick={() => setOpen(false)}><small>0{index + 1}</small>{item.label}</SmartLink>)}
+            : <SmartLink className={activeClass(item.to)} key={item.label} to={item.to} onClick={() => setOpen(false)}><small>0{index + 1}</small>{item.label}</SmartLink>)}
         </nav>
       </div>
     </header>
@@ -74,5 +90,43 @@ export function BackToTop() {
 }
 
 export function Layout({ children }: { children: ReactNode }) {
+  const location = useLocation()
+
+  useEffect(() => {
+    const motionDisabled = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const selector = [
+      '.section-head',
+      '.capability-card',
+      '.project-card',
+      '.skill-editorial article',
+      '.process-line article',
+      '.visual-list article',
+      '.about-grid > *',
+      '.case-visual',
+      '.meta-grid > div',
+      '.case-content > *',
+      '.ppt-deck-showcase',
+    ].join(',')
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(selector))
+    if (motionDisabled || !('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'))
+      return
+    }
+
+    elements.forEach((element, index) => {
+      element.classList.add('reveal-item')
+      element.style.setProperty('--reveal-delay', `${(index % 4) * 45}ms`)
+    })
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -7% 0px' })
+    elements.forEach((element) => observer.observe(element))
+    return () => observer.disconnect()
+  }, [location.pathname])
+
   return <><Header /><main id="main" tabIndex={-1}>{children}</main><BackToTop /></>
 }
