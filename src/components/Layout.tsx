@@ -53,13 +53,13 @@ export function Footer() {
     <footer id="contact" className="contact-footer">
       <div className="mesh mesh-warm" aria-hidden="true" />
       <div className="container footer-content">
-        <p className="eyebrow">CONTACT / 2026</p>
-        <h2>LET&apos;S BUILD BETTER<br />AI EXPERIENCES.</h2>
+        <p className="eyebrow">CONTACT / 联系我 · 2026</p>
+        <h2>一起创造更好的<br />AI 产品体验。</h2>
         <p className="footer-cn">期待参与真实的 AI 产品迭代，<br />让复杂能力成为用户真正能够使用的体验。</p>
         <div className="button-row">
-          <a className="button button-dark" href={`mailto:${portfolio.contact.email}`}>EMAIL ME <span>↗</span></a>
+          <a className="button button-dark" href={`mailto:${portfolio.contact.email}`}>发送邮件 EMAIL <span>↗</span></a>
           {/* TODO: Replace with real resume PDF. */}
-          <a className="button button-ghost" href={portfolio.contact.resumeUrl}>VIEW RESUME <span>↗</span></a>
+          <a className="button button-ghost" href={portfolio.contact.resumeUrl}>查看简历 RESUME <span>↗</span></a>
         </div>
         <div className="footer-base"><span>MIA PORTFOLIO 2026</span><span>AI PRODUCT / PRESENTATION DESIGN</span></div>
       </div>
