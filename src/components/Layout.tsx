@@ -104,8 +104,8 @@ export function Layout({ children }: { children: ReactNode }) {
       '.about-grid > *',
       '.case-visual',
       '.meta-grid > div',
-      '.case-content > *',
-      '.ppt-deck-showcase',
+      '.case-content > h2',
+      '.case-content > .case-lead',
     ].join(',')
     const elements = Array.from(document.querySelectorAll<HTMLElement>(selector))
     if (motionDisabled || !('IntersectionObserver' in window)) {
