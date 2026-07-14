@@ -2,7 +2,7 @@ import { Layout } from './components/Layout'
 import { useLocation } from './router'
 import { HomePage } from './pages/HomePage'
 import { WpsAiPptPage } from './pages/WpsAiPptPage'
-import { HarnessPage } from './pages/HarnessPage'
+import { CompetitiveAnalysisPage } from './pages/CompetitiveAnalysisPage'
 import { PersonalPptPage } from './pages/PersonalPptPage'
 import { PersonalDesignPage } from './pages/PersonalDesignPage'
 import { AboutPage } from './pages/AboutPage'
@@ -13,7 +13,9 @@ export default function App() {
   const Page = ({
     '/': HomePage,
     '/work/wps-ai-ppt': WpsAiPptPage,
-    '/work/ppt-quality-harness': HarnessPage,
+    '/work/ai-ppt-competitive-analysis': CompetitiveAnalysisPage,
+    // Keep the previous published path working after project 02 was replaced.
+    '/work/ppt-quality-harness': CompetitiveAnalysisPage,
     '/work/personal-ppt': PersonalPptPage,
     '/work/personal-design': PersonalDesignPage,
     // Keep the previous published path working after the project replacement.

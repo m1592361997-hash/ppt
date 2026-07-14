@@ -82,6 +82,6 @@ export function WpsAiPptPage() {
       <div className="outcome-list">{w.outcomes.map(([title,text],index)=><article key={title}><span>0{index+1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       <div className="final-statement practice-final"><small>FINAL STATEMENT / 最终观点</small><h3>AI SHOULD NOT<br />REPLACE MY JUDGMENT.<br /><em>IT SHOULD HELP ME<br />EXPRESS MY THINKING<br />MORE CLEARLY.</em></h3><p>AI 不应该替代我的判断，<br />而应该帮助我更清楚地表达自己的思考。</p></div>
     </CaseSection>
-    <NextProject label="AI PPT 质量评测系统" to="/work/ppt-quality-harness" />
+    <NextProject label="WPS AI PPT 竞品分析" to="/work/ai-ppt-competitive-analysis" />
   </div>
 }
