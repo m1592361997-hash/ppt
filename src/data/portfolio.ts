@@ -51,10 +51,10 @@ export const portfolio = {
   projects: [
     { no: '01', slug: 'wps-ai-ppt', title: 'WPS AI PPT 共创体验', subtitle: 'FROM GENERATION TO CO-CREATION', description: '从“一键生成”到“可理解、可控制、可修改”的 AI PPT 创作体验。', tags: ['USER RESEARCH', 'COMPETITIVE ANALYSIS', 'AI PRODUCT DESIGN', 'PROTOTYPE'], type: '独立概念项目 · INDEPENDENT CONCEPT PROJECT', tone: 'coral' },
     { no: '02', slug: 'ppt-quality-harness', title: 'AI PPT 质量评测系统', subtitle: 'PPT QUALITY HARNESS', description: '建立一套可解释的 AI PPT 生成质量评测体系。', tags: ['AI EVALUATION', 'HARNESS DESIGN', 'DATA ANALYSIS', 'ITERATION'], tone: 'blue' },
-    { no: '03', slug: 'puro-coffee', title: '个人 PPT 视觉作品', subtitle: 'PERSONAL POWERPOINT PORTFOLIO', description: '在单一主色限制下，通过构图、字体层级和图形系统建立连续的产品视觉表达。', tags: ['VISUAL SYSTEM', 'CONTENT DESIGN', 'CAMPAIGN', 'DELIVERY'], type: '真实视觉项目 · REAL VISUAL DESIGN PROJECT', tone: 'warm' },
+    { no: '03', slug: 'personal-ppt', title: '个人 PPT 项目展示', subtitle: 'SELECTED PRESENTATION WORKS', description: '通过六个不同主题的 PPT 作品，展示内容梳理、演示逻辑、版式系统与视觉表达能力。', tags: ['PRESENTATION DESIGN', 'CONTENT STRUCTURE', 'VISUAL SYSTEM', 'STORYTELLING'], type: '个人作品合集 · PERSONAL PROJECTS', tone: 'warm' },
   ],
   visualWorks: [
-    { letter: 'A', title: 'PURO 咖啡电商平台海报及物料设计', text: '围绕单一主色完成系列产品海报与平台物料，在保持品牌统一的同时建立产品区分度。' },
+    { letter: 'A', title: '个人 PPT 作品集与版式探索', text: '围绕课程汇报、研究答辩与项目提案等场景，建立清晰的内容结构和连续的演示视觉语言。' },
     { letter: 'B', title: '中小学生安全手册插画', text: '将交通、校园、消防和日常防护知识转化为儿童易于理解的角色、场景和行为对比。' },
     { letter: 'C', title: '《漫画版内务条令》插画', text: '参与政务出版合作，将文字条令转译为漫画场景。因涉及内部资料，仅展示公开或脱敏后的设计过程。' },
   ],
@@ -121,11 +121,26 @@ export const portfolio = {
     scores: [['CONTENT', 84], ['STRUCTURE', 72], ['VISUAL', 81], ['MATCHING', 68], ['ACCURACY', 92], ['EDITABILITY', 77], ['SCENARIO', 74]] as [string, number][],
     optimization: [['CONTENT', '优化材料理解和内容补全'], ['STRUCTURE', '优化大纲和章节规划'], ['VISUAL', '优化页面类型和模板匹配'], ['MATCHING', '优化图片检索和图表生成'], ['EDITABILITY', '优化组件结构和二次编辑路径']],
   },
-  puro: {
-    title: 'PURO 咖啡视觉系统', subtitle: ['视觉系统与内容设计', 'VISUAL SYSTEM & CONTENT DESIGN'], summary: '围绕咖啡产品完成电商平台海报及相关视觉物料，在主理人限定单一主色的条件下，通过构图、文字层级、产品信息和图形系统建立连续而有区分度的视觉表达。',
-    meta: [['项目类型', '真实视觉设计项目'], ['项目时间', '2026'], ['我的角色', '视觉设计、内容排版、系列延展'], ['交付内容', '17 张产品海报及平台应用物料']],
-    strategies: ['通过不同构图建立产品节奏', '通过标题比例建立信息重点', '通过产品图和辅助图形建立区分', '通过统一色彩维持品牌连续性', '通过平台尺寸适配保证交付一致'],
-    sections: ['PROJECT BACKGROUND', 'DESIGN CHALLENGE', 'COLOR STRATEGY', 'VISUAL SYSTEM', 'POSTER SERIES', 'PLATFORM APPLICATION', 'DELIVERY', 'REFLECTION'],
+  personalPpt: {
+    title: '个人 PPT 项目展示',
+    subtitle: ['六个作品，六种表达方式', 'SELECTED PRESENTATION WORKS'],
+    summary: '这里将集中展示六个不同主题与使用场景的 PPT 作品，重点呈现我如何组织内容、建立演示逻辑，并通过版式、字体、色彩和图形系统完成视觉转译。',
+    meta: [['项目类型', '个人 PPT 作品合集'], ['作品数量', '6 个项目'], ['我的角色', '内容梳理、演示设计、视觉设计'], ['展示内容', '封面、核心页面与设计说明']],
+    principles: [
+      ['内容结构', '先明确汇报目的、受众和核心结论，再规划章节与页面节奏。'],
+      ['信息层级', '通过标题比例、网格、留白和对比，让重点在短时间内被理解。'],
+      ['视觉系统', '根据项目主题建立一致的字体、色彩、图形和页面组件规则。'],
+      ['场景适配', '针对课程汇报、答辩、提案等场景调整信息密度与表达方式。'],
+    ],
+    // TODO: Replace titles, descriptions and image paths with the six real PPT projects.
+    works: [
+      { no: '01', title: 'AI 产品分析与概念提案', englishTitle: 'AI PRODUCT CONCEPT', category: '产品分析 / 概念提案', description: '以产品问题、用户洞察和方案逻辑为主线，展示从分析到概念设计的完整叙事。', tags: ['产品逻辑', '用户洞察', '方案表达'], image: '', tone: 'coral', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '02', title: '设计研究课程汇报', englishTitle: 'DESIGN RESEARCH', category: '课程汇报 / 研究表达', description: '将研究背景、方法、发现和结论组织为清晰的学术汇报结构。', tags: ['研究框架', '信息可视化', '学术表达'], image: '', tone: 'blue', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '03', title: '品牌策略与视觉提案', englishTitle: 'BRAND STRATEGY', category: '品牌提案 / 视觉系统', description: '通过品牌定位、视觉概念和应用示意建立具有说服力的提案节奏。', tags: ['品牌策略', '视觉系统', '提案设计'], image: '', tone: 'orange', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '04', title: '数据洞察分析报告', englishTitle: 'DATA INSIGHT', category: '数据报告 / 信息设计', description: '把复杂数据转化为可比较、可阅读并能支持结论的图表与页面结构。', tags: ['数据叙事', '图表设计', '结论提炼'], image: '', tone: 'violet', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '05', title: '空间设计方案汇报', englishTitle: 'SPATIAL DESIGN', category: '设计方案 / 项目汇报', description: '围绕场地问题、设计策略与空间体验组织方案展示，平衡图像和文字信息。', tags: ['空间叙事', '方案逻辑', '图文编排'], image: '', tone: 'green', status: 'PLACEHOLDER · 待替换真实作品' },
+      { no: '06', title: '视觉叙事专题设计', englishTitle: 'VISUAL STORYTELLING', category: '专题策划 / 视觉表达', description: '通过连续页面、图形语言和节奏变化，构建更具情绪与记忆点的演示体验。', tags: ['内容策划', '视觉叙事', '版式系统'], image: '', tone: 'pink', status: 'PLACEHOLDER · 待替换真实作品' },
+    ],
   },
 }
 

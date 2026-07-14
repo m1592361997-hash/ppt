@@ -3,7 +3,7 @@ import { useLocation } from './router'
 import { HomePage } from './pages/HomePage'
 import { WpsAiPptPage } from './pages/WpsAiPptPage'
 import { HarnessPage } from './pages/HarnessPage'
-import { PuroCoffeePage } from './pages/PuroCoffeePage'
+import { PersonalPptPage } from './pages/PersonalPptPage'
 import { AboutPage } from './pages/AboutPage'
 
 export default function App() {
@@ -13,7 +13,9 @@ export default function App() {
     '/': HomePage,
     '/work/wps-ai-ppt': WpsAiPptPage,
     '/work/ppt-quality-harness': HarnessPage,
-    '/work/puro-coffee': PuroCoffeePage,
+    '/work/personal-ppt': PersonalPptPage,
+    // Keep the previous published path working after the project replacement.
+    '/work/puro-coffee': PersonalPptPage,
     '/about': AboutPage,
   } as Record<string, typeof HomePage>)[path] ?? HomePage
   return <Layout><Page /></Layout>

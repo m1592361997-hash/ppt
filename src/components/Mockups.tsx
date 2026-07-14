@@ -22,7 +22,7 @@ export function HarnessDashboard() {
 
 export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' }) {
   if (type === 'blue') return <div className="project-visual dashboard-mini"><div className="visual-top"><span>AI EVALUATION</span><b>78.4</b></div><div className="mini-bars">{[78,64,86,71,91].map((n,i)=><i key={i} style={{height:`${n}%`}} />)}</div><div className="error-tags"><span>E02 LOGIC</span><span>E05 OVERLOAD</span><span>E06 MATCHING</span></div></div>
-  if (type === 'warm') return <div className="project-visual poster-mini"><span className="vertical">PURO / 2026</span><div className="coffee-cup"><i /></div><h3>PURE<br />ROAST.</h3><p>NO. 03 · ESPRESSO</p></div>
+  if (type === 'warm') return <div className="project-visual ppt-stack-mini" role="img" aria-label="六个个人 PPT 作品的组合预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{['AI 产品','设计研究','品牌策略','数据洞察'].map((title,i)=><div className={`stack-slide s${i+1}`} key={title}><small>0{i+1}</small><strong>{title}</strong><i /></div>)}<b>6 PROJECTS</b></div>
   return <div className="project-visual editor-mini"><div className="editor-rail"><i /><i /><i /></div><div className="editor-sheet"><small>CO-CREATION / 04</small><h3>BUILD THE STORY,<br />NOT JUST SLIDES.</h3><div className="editor-columns"><i /><i /><i /></div></div><div className="editor-score"><b>86</b><span>EDITABILITY</span></div></div>
 }
 
@@ -49,7 +49,21 @@ export function ResultMock() {
   return <div className="interface-mock result-mock"><header><span>05 / QUALITY REPORT</span><b>结果评测</b></header><ScoreBars scores={portfolio.wps.scores} /><div className="result-notes">{portfolio.wps.suggestions.map((x,i)=><div key={x}><span>PAGE {String([6,9,12][i]).padStart(2,'0')}</span><p>{x}</p><button>查看页面 →</button></div>)}</div></div>
 }
 
-export function Poster({ index }: { index: number }) {
-  const layouts=['type-a','type-b','type-c','type-d']
-  return <div className={`puro-poster ${layouts[index%4]}`} role="img" aria-label={`PURO 咖啡海报占位 ${index+1}，待替换为 public/images/puro 中的真实图片`}><span className="poster-no">NO. {String(index+1).padStart(2,'0')}</span><h3>{index%3===0?'PURE\nROAST.':index%3===1?'SLOW\nMORNING.':'DEEP\nAROMA.'}</h3><div className="cup-shape"><i /></div><p>PURO COFFEE<br />SELECTED BEANS / 2026</p></div>
+type PptCoverProps = { index?: number; title: string; englishTitle: string; tone: string; image?: string }
+
+export function PptCoverPlaceholder({ index = 0, title, englishTitle, tone, image }: PptCoverProps) {
+  if (image) return <img className="ppt-cover-image" src={image} alt={`${title} PPT 作品封面`} loading="lazy" />
+  return <div className={`ppt-cover-placeholder tone-${tone}`} role="img" aria-label={`${title} PPT 封面占位，待替换真实作品图片`}>
+    <span className="ppt-cover-no">PPT / {String(index + 1).padStart(2, '0')}</span>
+    <div className="ppt-cover-lines"><i /><i /><i /></div>
+    <div className="ppt-cover-copy"><small>{englishTitle}</small><strong>{title}</strong></div>
+    <span className="ppt-cover-year">MIA · 2026</span>
+  </div>
+}
+
+export function PptShowcaseHero({ works }: { works: PptCoverProps[] }) {
+  return <div className="ppt-showcase-hero" aria-label="个人 PPT 作品展示预览">
+    {works.slice(0, 4).map((work, index) => <div className={`hero-slide hs${index + 1}`} key={work.title}><PptCoverPlaceholder {...work} index={index} /></div>)}
+    <span className="hero-slide-count"><b>06</b> SELECTED WORKS</span>
+  </div>
 }

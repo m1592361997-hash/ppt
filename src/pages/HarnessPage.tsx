@@ -40,6 +40,6 @@ export function HarnessPage() {
       <div className="outcome-grid"><div><h3>当前局限</h3><p>评分权重仍需基于不同场景校准；模型评测可能受到提示词和模型版本影响；视觉与场景适配仍需要人工判断。</p></div><div><h3>下一步</h3><p>补充真实生成样本，建立评分者一致性检查，并追踪同类错误是否能在产品迭代后稳定下降。</p></div></div>
       <blockquote>评测系统的意义不是为生成结果打出一个漂亮分数，而是让问题能够被定位、解释并反向进入产品迭代。</blockquote>
     </CaseSection>
-    <NextProject label="PURO 咖啡视觉系统" to="/work/puro-coffee" />
+    <NextProject label="个人 PPT 项目展示" to="/work/personal-ppt" />
   </div>
 }
