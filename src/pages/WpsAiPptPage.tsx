@@ -1,68 +1,85 @@
-import { CaseHero, CaseSection, MetaGrid, NextProject, PlaceholderBadge, ScoreBars } from '../components/UI'
-import { GenerationMock, NeedInputMock, OutlineMock, PlanningMock, ResultMock, WorkbenchMockup } from '../components/Mockups'
+import { CaseHero, CaseSection, MetaGrid, NextProject } from '../components/UI'
+import { VisualDirectionWorkbench } from '../components/Mockups'
 import { portfolio } from '../data/portfolio'
 
 const w = portfolio.wps
 
+function ScenarioPreview({ tone }: { tone: string }) {
+  return <div className={`scenario-preview scenario-${tone}`} aria-hidden="true">
+    <span />
+    <div><i /><i /><i /></div>
+    <b /><em />
+  </div>
+}
+
 export function WpsAiPptPage() {
-  return <div className="page-fade case-page wps-page">
-    <CaseHero title={w.title} subtitle={w.subtitle} claim={w.claim} summary={w.summary} tags={w.tags} tone="coral"><WorkbenchMockup compact /></CaseHero>
+  return <div className="page-fade case-page wps-page visual-language-page">
+    <CaseHero title={w.title} subtitle={w.subtitle} claim={w.claim} summary={w.summary} tags={w.tags} tone="coral">
+      <VisualDirectionWorkbench />
+    </CaseHero>
     <section className="case-meta-wrap"><div className="container"><MetaGrid items={w.meta} /></div></section>
 
-    <CaseSection id="background" no="01" label="BACKGROUND / 项目背景" title={<>生成完成，<br />不等于真正可用。</>} intro="AI 已经能够快速生成一份完整 PPT，但“生成出来”并不等于“真正可用”。用户仍然需要反复修改内容结构、页面重点和视觉风格，才能得到适合具体汇报场景的最终结果。">
-      <div className="problem-grid">{w.problems.map((x,i)=><article key={x}><span>0{i+1}</span><p>{x}</p></article>)}</div>
+    <CaseSection id="starting-point" no="01" label="STARTING POINT / 项目出发点" title={<>AI 可以快速生成页面，<br />但不同汇报需要不同的视觉语言。</>} intro="项目开始时，我把 AI PPT 的核心价值理解为效率：读取 Word 文字稿、提取大纲、拆分内容，再快速形成一套结构完整的演示文稿。实际使用后我发现，对设计专业学生而言，真正困难的不是让文字出现在页面上，而是判断这份内容应该以什么样的视觉方式被表达。">
+      <div className="project-quote"><small>CORE QUESTION / 核心问题</small><p>我如何借助 AI 判断不同汇报的表达需求，并快速建立与内容相匹配的视觉风格？</p></div>
+      <div className="starting-grid">{w.startingPoints.map(([no,title,text])=><article key={no}><span>{no}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <p className="translation-note">从 Word 文字稿到 PPT，不只是内容压缩和模板匹配，而是根据汇报目标，重新设计信息被观看和理解的方式。</p>
     </CaseSection>
 
-    <CaseSection id="hmw" no="02" label="RESEARCH GOAL / 研究目标" title="我们可以如何……">
-      <div className="hmw-list">{w.howMightWe.map((x,i)=><article key={x}><span>HMW / 0{i+1}</span><h3>{x}</h3></article>)}</div>
+    <CaseSection id="scenarios" no="02" label="PRESENTATION TYPES / 汇报类型" title="先判断表达任务，再决定视觉形式" intro="同样是课堂汇报，学术研究、案例分析、设计提案与人文艺术主题对页面的要求并不相同。我先拆解每种场景的表达目标，再把目标转译成可执行的视觉规则。">
+      <div className="scenario-grid">{w.scenarios.map(item=><article className={`scenario-card ${item.tone}`} key={item.no}>
+        <div className="scenario-card-head"><span>{item.no}</span><small>{item.english}</small></div>
+        <ScenarioPreview tone={item.tone} />
+        <h3>{item.title}</h3><p className="scenario-focus">强调：{item.focus}</p>
+        <ul>{item.rules.map(rule=><li key={rule}>{rule}</li>)}</ul>
+      </article>)}</div>
     </CaseSection>
 
-    <CaseSection id="research" no="03" label="USER RESEARCH / 用户研究" title="先理解用户，再开始设计" intro="以下规模用于展示研究计划与信息结构，不代表已经完成的真实研究。">
-      <PlaceholderBadge />
-      <div className="research-stats">{w.researchData.map(x=><article key={x.label}><strong>{x.value}</strong><span>{x.label}</span></article>)}</div>
-      <div className="two-columns"><div><h3>调研对象</h3><ul className="clean-list">{w.researchGroups.map(x=><li key={x}>{x}</li>)}</ul></div><div><h3>调研问题</h3><ol className="number-list">{w.researchQuestions.map(x=><li key={x}>{x}</li>)}</ol></div></div>
-      <div className="subsection-title"><span>INITIAL HYPOTHESES</span><h3>初步假设，待调研验证</h3></div>
-      <div className="insight-grid">{w.insights.map((x,i)=><article key={x}><span>INSIGHT 0{i+1}</span><p>{x}</p><PlaceholderBadge>待调研验证</PlaceholderBadge></article>)}</div>
+    <CaseSection id="task" no="03" label="TASK UNDERSTANDING / 任务理解" title="从“选择模板”，转向“建立视觉规则”" intro="我不再只给 AI 一个标题并要求它生成完整 PPT，而是先补充汇报场景和表达条件。AI 需要先解释它对任务的理解，再提出视觉方向。">
+      <div className="task-question-grid">{w.taskQuestions.map((question,index)=><article key={question}><span>0{index+1}</span><p>{question}</p></article>)}</div>
+      <div className="content-to-style" role="img" aria-label="从汇报任务到视觉策略的转译流程">
+        <div><small>INPUT / 输入</small><strong>汇报类型 · 听众 · 时长<br />表达目标 · 内容构成</strong></div>
+        <i>→</i>
+        <div className="ai-step"><small>AI INTERPRETS / AI 判断</small><strong>内容特征 · 信息密度<br />叙事关系 · 图片角色</strong></div>
+        <i>→</i>
+        <div><small>OUTPUT / 输出</small><strong>配色 · 字体 · 网格<br />图文比例 · 页面节奏</strong></div>
+      </div>
     </CaseSection>
 
-    <CaseSection id="competitive" no="04" label="COMPETITIVE ANALYSIS / 竞品分析" title="从快速生成，到过程可控" intro="矩阵用于梳理体验观察，不对产品作绝对优劣判断；最终结论仍需结合持续体验验证。">
-      <div className="matrix" role="table" aria-label="AI PPT 产品体验比较矩阵"><div className="matrix-row head" role="row"><span role="columnheader">DIMENSION</span>{w.competitors.map(x=><b role="columnheader" key={x}>{x}</b>)}</div>{w.compareDimensions.map((x,i)=><div className="matrix-row" role="row" key={x}><span role="rowheader">{x}</span>{w.competitors.map((c,j)=><b key={c} aria-label={`${c} ${x}体验观察`}>{['●','◐','○'][(i+j)%3]}<small>{['支持','部分支持','待观察'][(i+j)%3]}</small></b>)}</div>)}</div>
-      <blockquote>现有产品主要解决“从无到有”的生成效率，但在需求澄清、过程控制和结果解释方面仍有进一步优化空间。</blockquote>
+    <CaseSection id="process" no="04" label="MY WORKFLOW / 探索方式" title="六步建立一套可持续的视觉语言" intro="AI 在这里不是最终页面的作者，而是视觉方向辅助工具。每一步都保留设计者的确认点，避免在尚未判断内容之前直接套用模板。">
+      <div className="visual-process">{w.process.map(item=><article key={item.no}><span>{item.no}</span><small>{item.english}</small><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
     </CaseSection>
 
-    <CaseSection id="journey" no="05" label="USER JOURNEY / 用户旅程" title="AI 可以在哪些环节介入">
-      <div className="journey-flow">{w.journey.map((x,i)=><div key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong>{i<w.journey.length-1&&<i>→</i>}</div>)}</div>
-      <div className="journey-notes"><div><h3>关键痛点 / PAIN POINTS</h3>{w.pains.map(x=><p key={x}>— {x}</p>)}</div><div><h3>AI 机会点 / OPPORTUNITIES</h3>{w.opportunities.map(x=><p key={x}>＋ {x}</p>)}</div></div>
+    <CaseSection id="directions" no="05" label="VISUAL DIRECTIONS / 视觉方向" title="先发散三种方向，再选择最合适的一种" intro="每个方向不只给出一张好看的参考页，还必须说明为什么适合、图文比例如何、整套页面应该保持怎样的节奏。">
+      <div className="direction-showcase">{w.directions.map(direction=><article className={`direction-${direction.id.toLowerCase()}`} key={direction.id}>
+        <div className="direction-cover"><span>{direction.id}</span><small>{direction.english}</small><strong>{direction.title}</strong><div>{direction.palette.map(color=><i key={color} style={{background:color}} />)}</div></div>
+        <h3>方向 {direction.id} · {direction.title}</h3><p>{direction.reason}</p>
+        <dl><div><dt>图文比例</dt><dd>{direction.ratio}</dd></div><div><dt>页面节奏</dt><dd>{direction.rhythm}</dd></div></dl>
+      </article>)}</div>
     </CaseSection>
 
-    <CaseSection id="principles" no="06" label="PRODUCT PRINCIPLES / 产品原则" title="先理解、可控制、能解释">
-      <div className="principle-grid">{w.principles.map(x=><article key={x.no}><span>{x.no}</span><h3>{x.title}</h3><p>{x.intro}</p><ul>{x.items.map(y=><li key={y}>{y}</li>)}</ul></article>)}</div>
+    <CaseSection id="calibration" no="06" label="REFERENCE CALIBRATION / 参考校准" title="提取视觉规则，而不是复制参考图" intro="我会把喜欢的 PPT、海报、网页或作品集截图提供给 AI，让它分析视觉关系。参考图的作用是帮助描述判断，而不是让 AI 机械复刻某一张页面。">
+      <div className="calibration-board">
+        <div className="reference-sheet" aria-label="参考图分析示意"><span>REFERENCE / 01</span><h3>IMAGE-LED<br />NARRATIVE</h3><div className="reference-image" /><p>大图建立语境<br />文字承担观点</p></div>
+        <div className="calibration-list">{w.calibration.map((item,index)=><div key={item}><span>{String(index+1).padStart(2,'0')}</span><strong>{item}</strong><i /></div>)}</div>
+        <div className="rule-output"><small>EXTRACTED RULES</small><h3>可复用规则</h3><p>图像占比 65%</p><p>左对齐编辑式网格</p><p>暖白背景 + 单一强调色</p><p>章节页使用节奏性留白</p></div>
+      </div>
     </CaseSection>
 
-    <CaseSection id="system" no="07" label="SYSTEM ARCHITECTURE / 系统架构" title="AI PPT 创作系统" dark>
-      <div className="architecture-grid">{w.architecture.map((module,i)=><article key={module[0]}><span>0{i+1}</span><h3>{module[0]}</h3><div>{module.slice(1).map(x=><i key={x}>{x}</i>)}</div></article>)}</div>
+    <CaseSection id="specification" no="07" label="DESIGN SPECIFICATION / 设计规范" title="把风格变成整套 PPT 都能执行的规则" intro="确定方向后，我把视觉判断转化为设计规范。这样 AI 在生成新页面时不会不断更换语言，人工修改也能保持连续。">
+      <div className="spec-system">{w.specification.map(([name,title,text],index)=><article key={name}><span>0{index+1}</span><small>{name}</small><h3>{title}</h3><p>{text}</p><div className={`spec-demo demo-${name.toLowerCase()}`}><i /><i /><i /></div></article>)}</div>
     </CaseSection>
 
-    <CaseSection id="flow" no="08" label="CORE FLOW / 核心流程" title="五个步骤，一条可控的创作闭环">
-      <div className="flow-table"><div className="flow-head"><span>STEP</span><span>用户在做什么</span><span>AI 在做什么</span><span>系统如何反馈</span><span>如何保持控制</span></div>{w.coreFlow.map((row,i)=><div className="flow-row" key={row[0]}><span><small>STEP 0{i+1}</small><strong>{row[0]}</strong></span>{row.slice(1).map(x=><p key={x}>{x}</p>)}</div>)}</div>
+    <CaseSection id="co-create" no="08" label="LOCAL CO-CREATION / 局部共创" title="锁定已经满意的部分，只修改当前问题" intro="整页或整套重新生成会破坏已经满意的内容。更可控的方式是先声明需要保留的规则，再让 AI 只处理一个局部任务。">
+      <div className="co-create-board"><div className="locked-system"><small>LOCKED / 已锁定</small><strong>字体 · 颜色 · 网格 · 页面结构</strong><div><i /><i /><i /><i /></div></div><div className="co-create-list">{w.coCreate.map(([keep,change],index)=><article key={keep+change}><span>0{index+1}</span><p><b>{keep}</b><i>→</i>{change}</p></article>)}</div></div>
     </CaseSection>
 
-    <CaseSection id="interfaces" no="09" label="KEY INTERFACES / 关键界面" title="从创作意图到可用结果" intro="五个关键界面使用统一组件、状态和反馈语言，让 AI 的工作过程对用户保持可见。">
-      <div className="interface-stack"><div><span>INTERFACE / 01</span><NeedInputMock /></div><div><span>INTERFACE / 02</span><OutlineMock /></div><div><span>INTERFACE / 03</span><PlanningMock /></div><div><span>INTERFACE / 04</span><GenerationMock /></div><div><span>INTERFACE / 05</span><ResultMock /></div></div>
+    <CaseSection id="responsibility" no="09" label="HUMAN × AI / 决策分工" title="AI 提高效率，设计者保留判断" intro="更好的 AI PPT 不应该替设计者完成所有决定。它应减少复制、拆页、基础排版和反复重生成，让设计者把精力留给内容判断、审美选择和个人表达。" dark>
+      <div className="responsibility-grid"><article><span>AI / 辅助完成</span><h3>处理信息与重复工作</h3>{w.responsibilities.ai.map(item=><p key={item}>＋ {item}</p>)}</article><div className="responsibility-cross">×</div><article><span>DESIGNER / 保留决策</span><h3>决定什么值得被看见</h3>{w.responsibilities.designer.map(item=><p key={item}>— {item}</p>)}</article></div>
     </CaseSection>
 
-    <CaseSection id="harness" no="10" label="HARNESS OVERVIEW / 评测框架" title="什么才是一份好的 PPT？">
-      <div className="dimension-grid">{w.harnessDimensions.map(([name,text],i)=><article key={name}><span>0{i+1}</span><h3>{name}</h3><p>{text}</p></article>)}</div>
-    </CaseSection>
-
-    <CaseSection id="testing" no="11" label="TESTING & ITERATION / 测试迭代" title="不只测试任务，也要验证信任" intro="计划邀请 3—5 位目标用户完成原型测试。重点观察是否能顺利完成任务、停顿位置、是否理解 AI 建议、是否信任自动修改，以及希望保留哪些人工操作。">
-      <PlaceholderBadge>TEST PLAN · 测试计划，待执行</PlaceholderBadge>
-      <div className="iteration-card"><div><span>BEFORE / 迭代前</span><h3>系统直接自动修改存在问题的页面</h3><p><b>潜在风险：</b>用户不知道系统改了什么，也缺少撤回和确认感。</p></div><i>→</i><div><span>AFTER / 迭代后</span><h3>把决策权交还给用户</h3><div className="action-pills"><b>查看问题</b><b>接受建议</b><b>稍后处理</b></div><PlaceholderBadge>DESIGN HYPOTHESIS · 设计假设</PlaceholderBadge></div></div>
-    </CaseSection>
-
-    <CaseSection id="outcome" no="12" label="OUTCOME & REFLECTION / 结果与反思" title="少生成页面，多帮助决策">
-      <div className="outcome-grid"><div><h3>项目结果 / OUTCOME</h3><p>本项目完成了从问题定义、产品策略、用户流程到高保真原型和评测框架的概念设计。下一阶段需要通过真实访谈、可用性测试和生成样本验证，进一步调整不同场景下的评测权重。</p></div><div><h3>设计反思 / REFLECTION</h3><p>AI PPT 产品的核心并不是生成更多页面，而是降低用户组织信息、判断质量和继续修改的成本。未来还需要进一步验证自动化效率与用户控制权之间的平衡。</p></div></div>
-      <div className="reflection-score"><ScoreBars scores={w.scores.slice(0,4)} /><PlaceholderBadge>INTERFACE SAMPLE · 非真实测试结果</PlaceholderBadge></div>
+    <CaseSection id="reflection" no="10" label="OUTCOME & REFLECTION / 结论与反思" title="好的 AI，帮助我建立自己的视觉判断">
+      <div className="final-statement"><small>CORE VIEWPOINT / 核心观点</small><h3>AI SHOULD NOT<br />CHOOSE MY STYLE.<br /><em>IT SHOULD HELP ME BUILD<br />THE RIGHT VISUAL LANGUAGE.</em></h3><p>AI 不应该替我选择风格，<br />而应该帮助我建立合适的视觉语言。</p></div>
+      <div className="outcome-list">{w.outcomes.map(([title,text],index)=><article key={title}><span>0{index+1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
     </CaseSection>
     <NextProject label="AI PPT 质量评测系统" to="/work/ppt-quality-harness" />
   </div>

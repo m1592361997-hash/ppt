@@ -12,6 +12,21 @@ export function WorkbenchMockup({ compact = false }: { compact?: boolean }) {
   </div>
 }
 
+export function VisualDirectionWorkbench() {
+  const directions = [
+    ['A', '理性学术', 'ACADEMIC'],
+    ['B', '编辑叙事', 'EDITORIAL'],
+    ['C', '实验视觉', 'EXPERIMENTAL'],
+  ]
+  return <div className="visual-direction-workbench" role="img" aria-label="AI 根据课堂汇报内容生成三种视觉方向的工作台示意图">
+    <header><div className="traffic"><i /><i /><i /></div><div className="visual-prompt"><span>AI</span> 分析这份设计史课堂汇报，给出匹配内容的视觉方向 <b>↵</b></div></header>
+    <div className="vd-body">
+      <aside><small>WORD / SOURCE</small><h3>现代设计史<br />课堂汇报</h3><p>课程类型</p><strong>案例分析</strong><p>内容构成</p><strong>图片 65% · 文字 35%</strong><div className="source-lines"><i /><i /><i /><i /></div></aside>
+      <main><div className="vd-heading"><span>VISUAL DIRECTIONS / 视觉方向</span><b>03</b></div><div className="direction-options">{directions.map(([id,title,en],index)=><div className={index===1?'selected':''} key={id}><span>{id}</span><small>{en}</small><strong>{title}</strong><div className={`mini-layout layout-${id.toLowerCase()}`}><i /><i /><i /></div>{index===1&&<em>RECOMMENDED</em>}</div>)}</div><div className="vd-rules"><span>提取规则</span><b>暖白背景</b><b>编辑式网格</b><b>图片优先</b><b>观点与证据同屏</b></div></main>
+    </div>
+  </div>
+}
+
 export function HarnessDashboard() {
   return <div className="dashboard-mock" role="img" aria-label="AI PPT 质量评测仪表盘示意图">
     <header><span>HARNESS / SAMPLE 024</span><b>QUALITY REPORT</b><i>EXPORT ↗</i></header>
@@ -24,7 +39,7 @@ export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' | 'des
   if (type === 'blue') return <div className="project-visual dashboard-mini"><div className="visual-top"><span>AI EVALUATION</span><b>78.4</b></div><div className="mini-bars">{[78,64,86,71,91].map((n,i)=><i key={i} style={{height:`${n}%`}} />)}</div><div className="error-tags"><span>E02 LOGIC</span><span>E05 OVERLOAD</span><span>E06 MATCHING</span></div></div>
   if (type === 'warm') return <div className="project-visual ppt-stack-mini" role="img" aria-label="六个个人 PPT 作品的组合预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{['AI 产品','设计研究','品牌策略','数据洞察'].map((title,i)=><div className={`stack-slide s${i+1}`} key={title}><small>0{i+1}</small><strong>{title}</strong><i /></div>)}<b>6 PROJECTS</b></div>
   if (type === 'design') return <div className="project-visual design-mosaic-mini" role="img" aria-label="三个个人设计作品的组合预览"><span>DESIGN WORKS / 01—03</span><div className="design-mini-poster"><b>视觉<br />设计</b><i /></div><div className="design-mini-illustration"><i /><b>知识插画</b></div><div className="design-mini-editorial"><small>03</small><b>出版<br />叙事</b></div></div>
-  return <div className="project-visual editor-mini"><div className="editor-rail"><i /><i /><i /></div><div className="editor-sheet"><small>CO-CREATION / 04</small><h3>BUILD THE STORY,<br />NOT JUST SLIDES.</h3><div className="editor-columns"><i /><i /><i /></div></div><div className="editor-score"><b>86</b><span>EDITABILITY</span></div></div>
+  return <div className="project-visual visual-language-mini" role="img" aria-label="AI 根据课堂汇报内容提出三种视觉方向的界面示意"><div className="vl-source"><span>WORD / INPUT</span><i /><i /><i /><b>案例分析型汇报</b></div><div className="vl-directions"><small>VISUAL DIRECTIONS / 03</small>{['理性学术','编辑叙事','实验视觉'].map((title,index)=><div className={index===1?'active':''} key={title}><span>{String.fromCharCode(65+index)}</span><b>{title}</b><i /></div>)}</div><div className="vl-rule"><span>SELECTED</span><strong>编辑式叙事</strong><small>图片优先 · 对比网格<br />观点与证据同屏</small></div></div>
 }
 
 export function NeedInputMock() {
