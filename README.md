@@ -34,7 +34,7 @@ npm run preview
 
 - `#/`：首页
 - `#/work/wps-ai-ppt`：WPS AI PPT｜从快速生成到视觉共创（基于个人实践的独立概念探索）
-- `#/work/ai-ppt-competitive-analysis`：WPS AI PPT 竞品分析（国内外 8 款产品）
+- `#/work/ai-ppt-competitive-analysis`：WPS AI PPT 竞品分析（面向产品团队的模拟内部汇报，国内外 8 款产品）
 - `#/work/ppt-quality-harness`：旧链接兼容，自动展示新的竞品分析项目
 - `#/work/personal-ppt`：个人 PPT 项目展示（6 个作品位）
 - `#/work/personal-design`：个人设计作品（3 个作品位）
