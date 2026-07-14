@@ -1,0 +1,24 @@
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --text: #171717;
+  --muted: #646461;
+  --line: #dfdfdc;
+  --dark: #161616;
+  --coral: #ff6b7a;
+  --pink: #ffb3c1;
+  --purple: #b9a7ff;
+  --blue: #9ec5ff;
+  --orange: #ffca8a;
+  --paper: #f4e8d5;
+  --radius-sm: 18px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --container: 1280px;
+  --wide: 1440px;
+  --gutter: clamp(20px, 5.4vw, 88px);
+  --section: clamp(96px, 11vw, 164px);
+  --font: Inter, Geist, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --ease: cubic-bezier(.2,.75,.25,1);
+  --shadow: 0 24px 70px rgba(30, 25, 40, .08);
+}
