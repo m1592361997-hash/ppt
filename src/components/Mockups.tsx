@@ -40,18 +40,25 @@ export function PracticeWorkflowMockup() {
 }
 
 export function CompetitiveLandscapeMockup() {
-  const products = ['WPS', 'iSlide', 'Gamma', 'Canva', 'Copilot', 'B.ai']
-  return <div className="competitive-mock" role="img" aria-label="八款 AI 演示产品的竞品能力矩阵示意图">
-    <header><span>AI PRESENTATION / 2026.07</span><b>COMPETITIVE LANDSCAPE</b><i>08 PRODUCTS</i></header>
-    <div className="competitive-mock-body">
-      <aside><small>PRODUCT SET</small>{products.map((product, index) => <div className={index === 0 ? 'active' : ''} key={product}><span>0{index + 1}</span><b>{product}</b></div>)}</aside>
-      <main><div className="mock-matrix-head"><span>INPUT</span><span>CONTROL</span><span>EDIT</span><span>DELIVER</span></div>{products.map((product, row) => <div className="mock-matrix-row" key={product}><b>{product}</b>{[0,1,2,3].map(col => <i className={(row + col) % 5 === 3 ? 'partial' : (row + col) % 7 === 5 ? 'verify' : 'yes'} key={col} />)}</div>)}<footer><span><i className="yes" /> 已验证</span><span><i className="partial" /> 部分验证</span><span><i className="verify" /> 待实测</span></footer></main>
+  const stats = portfolio.competitiveAnalysis.heroStats
+  const times = portfolio.competitiveAnalysis.efficiency.map(([name, draft, usable]) => [name, draft.replace(' 分钟', ''), usable.replace(' 分钟', '')])
+  return <div className="competitive-mock benchmark-mock" role="img" aria-label="六款 AI PPT 产品、三组任务、八项指标与五十四次测试的竞品研究数据概览">
+    <header><span>INDEPENDENT PRODUCT RESEARCH</span><b>AI PPT PRODUCT BENCHMARK</b><i>2026</i></header>
+    <div className="benchmark-mock-stats">{stats.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div>
+    <div className="benchmark-mock-chart">
+      <div className="benchmark-chart-heading"><span>TIME TO USABLE / MIN</span><b>首稿与完成时间</b></div>
+      {times.map(([name, draft, usable]) => <div className={name === 'WPS' ? 'active' : ''} key={name}><strong>{name}</strong><span><i style={{ width: `${Number(draft) * 6}%` }} />{draft}</span><span><i style={{ width: `${Number(usable) * 3.2}%` }} />{usable}</span></div>)}
+      <footer><span><i />生成第一版</span><span><i />调整到可用</span></footer>
     </div>
   </div>
 }
 
 export function ProjectVisual({ type }: { type: 'coral' | 'blue' | 'warm' | 'design' }) {
-  if (type === 'blue') return <div className="project-visual competition-mini" role="img" aria-label="八款 AI PPT 产品竞品矩阵预览"><div className="visual-top"><span>COMPETITIVE LANDSCAPE</span><b>08</b></div><div className="competition-mini-head"><span>产品</span><span>输入</span><span>控制</span><span>交付</span></div>{['WPS AI','iSlide','Gamma','Copilot'].map((name,row)=><div className="competition-mini-row" key={name}><strong>{name}</strong><i className="yes"/><i className={row===2?'partial':'yes'}/><i className={row===1?'partial':'yes'}/></div>)}<div className="competition-mini-note"><span>VERIFIED</span><span>PARTIAL</span><span>TO TEST</span></div></div>
+  if (type === 'blue') {
+    const stats = portfolio.competitiveAnalysis.heroStats
+    const times = portfolio.competitiveAnalysis.efficiency.map(([name, , usable]) => [name.toUpperCase(), usable.replace(' 分钟', '')])
+    return <div className="project-visual competition-mini benchmark-mini" role="img" aria-label="WPS AI PPT 竞品分析数据概览"><div className="visual-top"><span>PRODUCT BENCHMARK</span><b>{stats[3][0]}</b></div><div className="benchmark-mini-stats">{stats.map(([value,label])=><div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div><div className="benchmark-mini-chart">{times.map(([name,time])=><div className={name==='WPS'?'active':''} key={name}><span>{name}</span><i><b style={{width:`${Number(time) * 3.2}%`}} /></i><small>{time}m</small></div>)}</div><footer>调整到可用 / TIME TO USABLE</footer></div>
+  }
   if (type === 'warm') return <div className="project-visual ppt-stack-mini" role="img" aria-label="六个个人 PPT 作品的组合预览"><span className="ppt-stack-label">PRESENTATION WORKS / 01—06</span>{['AI 产品','设计研究','品牌策略','数据洞察'].map((title,i)=><div className={`stack-slide s${i+1}`} key={title}><small>0{i+1}</small><strong>{title}</strong><i /></div>)}<b>6 PROJECTS</b></div>
   if (type === 'design') return <div className="project-visual design-mosaic-mini" role="img" aria-label="三个个人设计作品的组合预览"><span>DESIGN WORKS / 01—03</span><div className="design-mini-poster"><b>视觉<br />设计</b><i /></div><div className="design-mini-illustration"><i /><b>知识插画</b></div><div className="design-mini-editorial"><small>03</small><b>出版<br />叙事</b></div></div>
   return <div className="project-visual practice-card-mini" role="img" aria-label="从 Word 文字稿到 AI 初稿再到个人视觉表达的项目流程示意"><div><small>01 / WORD</small><strong>文字稿</strong><i /><i /><i /></div><span>→</span><div><small>02 / AI DRAFT</small><strong>生成初稿</strong><div className="mini-draft"><i /><i /></div></div><span>→</span><div className="made-mine"><small>03 / MADE MINE</small><strong>视觉共创</strong><div className="mini-final"><i /><i /></div></div><footer>FAST GENERATION <b>→</b> VISUAL CO-CREATION</footer></div>
